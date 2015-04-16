@@ -127,6 +127,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
+alias cdv='cd /var/www/vhosts'
 
 # cd into the old directory
 alias bd='cd "$OLDPWD"'
@@ -200,11 +201,15 @@ alias untar='tar -xvf'
 alias unbz2='tar -xvjf'
 alias ungz='tar -xvzf'
 
-# Alias for Git
+# Alias's for SVN
+alias svnig='svn pg -R svn:ignore .'
+
+# Alias's for Git
 alias gcom='git commit -m'
 alias gp='git push'
 alias gad='git add'
 alias gpl='git pull'
+alias gpo='git push origin master'
 
 # Show all logs in /var/log
 alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
