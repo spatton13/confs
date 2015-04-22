@@ -100,7 +100,7 @@ alias web='cd /var/www/html'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Edit this .bashrc file
-export brcrepo='~/repo/git/github/spatton13/confs'
+export brcrepo='~/repo/git/github/spatton13/confs/bashrc'
 alias ebrc='edit ~/.bashrc'
 alias sbrc='source ~/.bashrc'
 alias cbrc="cp ~/.bashrc $brcrepo"
@@ -659,7 +659,7 @@ function __setprompt
 	fi
 
 	# Date
-	PS1+="\[${DARKGRAY}\](\[${LIGHTGRAY}\]\$(date +%a) $(date +%b-'%-m')" # Date
+	PS1+="\[${DARKGRAY}\](\[${LIGHTGRAY}\]\$(date +%a) $(date +%b-'%-d')" # Date
 	PS1+="${DARKGRAY} $(date +'%-I':%M:%S%P)\[${DARKGRAY}\])-" # Time
 
 	# CPU
