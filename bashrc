@@ -30,7 +30,7 @@ if [[ $iatest > 0 ]]; then bind "set bell-style visible"; fi
 
 # Expand the history size
 export HISTFILESIZE=10000
-export HISTSIZE=500
+export HISTSIZE=1000
 
 # Don't put duplicate lines in the history and do not add lines that start with a space
 export HISTCONTROL=erasedups:ignoredups:ignorespace
@@ -100,7 +100,10 @@ alias web='cd /var/www/html'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Edit this .bashrc file
+export brcrepo='~/repo/git/github/spatton13/confs'
 alias ebrc='edit ~/.bashrc'
+alias sbrc='source ~/.bashrc'
+alias cbrc="cp ~/.bashrc $brcrepo"
 
 # Show help for this .bashrc file
 alias hlp='less ~/.bashrc_help'
