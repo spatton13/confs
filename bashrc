@@ -212,6 +212,7 @@ alias ungz='tar -xvzf'
 alias svnig='svn pg -R svn:ignore .'
 
 # Alias's for Git
+alias gd='git diff'
 alias gcom='git commit -m'
 alias gp='git push'
 alias gad='git add'
