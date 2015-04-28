@@ -21,6 +21,10 @@ elif [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
 fi
 
+# Enable ssh-agent upon login
+ssh-agent -s && eval $(ssh-agent -s)
+alias sgit='ssh-add ~/.ssh/spatton13@github'
+
 #######################################################
 # EXPORTS
 #######################################################
