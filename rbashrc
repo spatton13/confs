@@ -10,8 +10,8 @@ if [ -f /etc/bashrc ]; then
 	 . /etc/bashrc
 fi
 # Source environment (co.) specific variables
-if [ -f ~/.vml_alias ]; then
-	 . ~/.vml_alias
+if [ -f ~/.root_alias ]; then
+	 . ~/.root_alias
 fi
 
 # Enable bash programmable completion features in interactive shells
@@ -20,6 +20,10 @@ if [ -f /usr/share/bash-completion/bash_completion ]; then
 elif [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
 fi
+
+# Enable ssh-agent upon login
+ssh-agent -s && eval $(ssh-agent -s)
+alias sgit='ssh-add ~/.ssh/spatton13@github'
 
 #######################################################
 # EXPORTS
@@ -34,6 +38,7 @@ export HISTSIZE=1000
 
 # Don't put duplicate lines in the history and do not add lines that start with a space
 export HISTCONTROL=erasedups:ignoredups:ignorespace
+export HISTCONTROL=eraseboth
 
 # Check the window size after each command and, if necessary, update the values of LINES and COLUMNS
 shopt -s checkwinsize
@@ -224,6 +229,7 @@ alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' 
 
 # SHA1
 alias sha1='openssl sha1'
+
 
 #######################################################
 # SPECIAL FUNCTIONS
@@ -603,11 +609,11 @@ function __setprompt
 	local WHITE="\033[1;37m"
 	local BLACK="\033[0;30m"
 	local DARKGRAY="\033[1;30m"
-	local RED="\033[0;31m"
+	local BROWN="\033[0;31m"
 	local LIGHTRED="\033[1;31m"
 	local GREEN="\033[0;32m"
 	local LIGHTGREEN="\033[1;32m"
-	local BROWN="\033[0;33m"
+	local RED="\033[0;33m"
 	local YELLOW="\033[1;33m"
 	local BLUE="\033[0;34m"
 	local LIGHTBLUE="\033[1;34m"
