@@ -22,8 +22,8 @@ elif [ -f /etc/bash_completion ]; then
 fi
 
 # Enable ssh-agent upon login
-ssh-agent -s && eval $(ssh-agent -s)
-alias sgit='ssh-add ~/.ssh/spatton13@github'
+#ssh-agent -s && eval $(ssh-agent -s)
+#alias sgit='ssh-add ~/.ssh/spatton13@github'
 
 #######################################################
 # EXPORTS
@@ -33,8 +33,8 @@ alias sgit='ssh-add ~/.ssh/spatton13@github'
 if [[ $iatest > 0 ]]; then bind "set bell-style visible"; fi
 
 # Expand the history size
-export HISTFILESIZE=10000
-export HISTSIZE=1000
+export HISTFILESIZE=
+export HISTSIZE=
 
 # Don't put duplicate lines in the history and do not add lines that start with a space
 export HISTCONTROL=erasedups:ignoredups:ignorespace
