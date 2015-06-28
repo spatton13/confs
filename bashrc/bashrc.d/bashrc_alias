@@ -1,0 +1,45 @@
+# Manipulate this .bashrc file
+##############################################################################
+export brcrepo="~/repo/git/hub/spatton13/confs/bashrc"
+export brcalias="~/repo/git/hub/spatton13/confs/bashrc/bashrc.d"
+
+# bashrc based aliases
+################################################################################
+
+alias ebrc='edit ~/.bashrc'
+alias sbrc='source ~/.bashrc'
+alias cbrc="cp ~/.bashrc $brcrepo"
+alias cbrcb="cp $brcrepo ~/.bashrc"
+
+# Show help for this .bashrc file
+alias hlp='less ~/.bashrc_help'
+
+# Automatically install the needed support files for this .bashrc file
+install_bashrc_support ()
+{
+        local dtype
+        dtype=$(distribution)
+
+        if [ $dtype == "redhat" ]; then
+                sudo yum install multitail tree joe
+        elif [ $dtype == "suse" ]; then
+                sudo zypper install multitail
+                sudo zypper install tree
+                sudo zypper install joe
+        elif [ $dtype == "debian" ]; then
+                sudo apt-get install multitail tree joe
+        elif [ $dtype == "gentoo" ]; then
+                sudo emerge multitail
+                sudo emerge tree
+                sudo emerge joe
+        elif [ $dtype == "mandriva" ]; then
+                sudo urpmi multitail
+                sudo urpmi tree
+                sudo urpmi joe
+        elif [ $dtype == "slackware" ]; then 
+                echo "No install support for Slackware"
+        else
+                echo "Unknown distribution"
+        fi
+}
+

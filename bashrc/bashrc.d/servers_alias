@@ -1,0 +1,3 @@
+# Alias's for SSH
+# alias SERVERNAME='ssh YOURWEBSITE.com -l USERNAME -p PORTNUMBERHERE'
+
