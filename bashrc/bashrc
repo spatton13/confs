@@ -111,6 +111,9 @@ alias web='cd /var/www/html'
 # umount /home/NAMEOFISO.iso
 # (Both commands done as root only.)
 
+# Alias to show _MY_ _Variables_ coupled w/ Env. Vars
+alias myvars="( set -o posix ; set ) | less"
+
 # Search command line history
 alias h="history | grep "
 
