@@ -65,6 +65,8 @@ alias ldir="ls -l | egrep '^d'" # directories only
 # alias chmod commands
 alias mx='chmod a+x'
 alias 000='chmod -R 000'
+alias 400='chmod -R 400'
+alias 600='chmod -R 600'
 alias 644='chmod -R 644'
 alias 666='chmod -R 666'
 alias 755='chmod -R 755'
