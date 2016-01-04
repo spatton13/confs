@@ -24,6 +24,7 @@ run_scripts()
     done
 }
 run_scripts $HOME/repo/git/hub/spatton13/confs/bashrc/bashrc.d 
+run_scripts $HOME/.bashrc.d 
 #export brcalias="~/repo/git/hub/spatton13/confs/bashrc/bashrc.d"
 #if [ -d $brcalias ]; then
 #	 . $brcalias/*
