@@ -1,3 +1,10 @@
-# Alias's for SSH
-# alias SERVERNAME='ssh YOURWEBSITE.com -l USERNAME -p PORTNUMBERHERE'
+## Alias's for SSH-Servers
+###########
+### t0t ###
+###########
+
+###################
+### Boomer Digi ###
+###################
+alias sshbdpw='ssh ubuntu@52.21.107.71'
 

@@ -1,15 +1,15 @@
 # Manipulate this .bashrc file
 ##############################################################################
-export brcrepo="~/repo/git/hub/spatton13/confs/bashrc"
+export brcrepo="~/repo/git/hub/spatton13/confs/bashrc_real"
 export brcalias="~/repo/git/hub/spatton13/confs/bashrc/bashrc.d"
 
 # bashrc based aliases
 ################################################################################
 
-alias ebrc='edit ~/.bashrc'
-alias sbrc='source ~/.bashrc'
-alias cbrc="cp ~/.bashrc $brcrepo"
-alias cbrcb="cp $brcrepo ~/.bashrc"
+alias ebrc='edit ~/.bashrc_real'
+alias sbrc='source ~/.bashrc_real'
+alias cbrc="cp ~/.bashrc_real $brcrepo"
+alias cbrcb="cp $brcrepo ~/.bashrc_real"
 
 # Show help for this .bashrc file
 alias hlp='less ~/.bashrc_help'
