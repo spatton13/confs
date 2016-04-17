@@ -25,10 +25,6 @@ run_scripts()
 }
 run_scripts $HOME/repo/git/hub/spatton13/confs/bashrc/bashrc.d 
 run_scripts $HOME/.bashrc.d 
-#export brcalias="~/repo/git/hub/spatton13/confs/bashrc/bashrc.d"
-#if [ -d $brcalias ]; then
-#	 . $brcalias/*
-#fi
 
 # Enable bash programmable completion features in interactive shells
 if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -37,23 +33,16 @@ elif [ -f /etc/bash_completion ]; then
         . /etc/bash_completion
 fi
 
-# In order for sftp (& potentially other things) to NOT ERROR/hang due to the Exports; mv .bashrc to .bashrc_real, touch .bashrc & add one of the following to empty:
+# In order for sftp (& potentially other things) to NOT ERROR/hang due to the Exports; add the following:
 
-# if [ "$TERM" = "xterm" ]
-# then
-#    source .bashc_real
+if [ "$SSH_TTY" ]
+then
+        source .bashc_real
+fi
+# if [ "$TERM" = "xterm" ]                                               
+# then                                                                                  
+#    source .bashc_real                                          
 # fi
-
-# if [ "$TERM" != "dumb" ]
-# then
-#    source .bashc_real
-# fi
-
-# if [ "$SSH_TTY" ]
-# then
-#         source .bashc_real
-# fi
-
 
 #######################################################
 # EXPORTS
