@@ -20,6 +20,8 @@ function git-branch()
 }
 
 # useful aliases
+alias gtuser="git shortlog -s -n -e --all"
+alias gt10="git log --pretty=format: --name-only|sort|uniq -c|sort -rg|head -10"
 alias gs="git-status"
 alias gd="git-diff"
 alias ga="git-add"
