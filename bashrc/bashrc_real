@@ -37,7 +37,7 @@ fi
 
 if [ "$SSH_TTY" ]
 then
-        source .bashc_real
+        source .bashrc_real
 fi
 # if [ "$TERM" = "xterm" ]                                               
 # then                                                                                  
