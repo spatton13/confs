@@ -76,7 +76,7 @@ alias 777='chmod -R 777'
 alias h="history | grep "
 
 # Various 'find' commands
-alias ff        find . -type f
-alias ffs       'find . -type f | fgrep -v /.svn/ | fgrep -v /CVS/'
-alias ffg       'find . -type f | xargs grep'
+alias ff="find . -type f"
+alias ffs="find . -type f | fgrep -v /.svn/ | fgrep -v /CVS/"
+alias ffg="find . -type f | xargs grep"
 
