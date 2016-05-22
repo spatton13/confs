@@ -1,0 +1,7 @@
+#  Aliases for use of lxc (Linux Containers)
+
+alias lxcs="lxc-start -n"
+alias lxcstp="lxc-stop -n"
+alias lxcd="lxc-destroy -n"
+alias lxci="lxc-info -n"
+

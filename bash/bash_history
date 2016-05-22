@@ -1,0 +1,1058 @@
+sudo su -- root
+ip addr
+ssh git@github.com
+ssh-agent .ssh/shayne.patton@boomer.digital_rsa
+eval $(ssh-agent)
+ls
+ls .ssh/
+ls -alh .ssh/
+ssh-add .ssh/shayne.patton@boomer.digital_rsa
+ssh ubuntu@52.5.201.98
+mkdir -p repos/git/hub/shaynepatton/
+apt-cache search dropbox
+sudo apt-get install dropbox
+df -h
+cd
+sudo apt-get clean all 
+git clone git@github.com:boomerdigital/arai-helmets.git
+cd arai-helmets/
+cd ../../
+cd shaynepatton/
+git clone git://github.com/sstephenson/rbenv.git .rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+rbenv install -v 2.2.4
+ruby -v
+gem
+echo "gem: --no-document" > ~/.gemrc
+exit
+cp Dropbox/career/employers/Boomer/aws_keys/arai_staging.pem .ssh/
+chmod 400 .ssh/arai_staging.pem 
+rbenv global 2.2.4
+cat .ssh/arai_staging.pub 
+version of puppet module called rbenv - 
+history
+ 2
+gem install bundler capistrano
+gem list -ra rails | grep -G "^rails\ "
+gem install rails -v 4.2.5
+gem install puma
+gem install supply_dro
+gem install supply_drop
+cd repos/git/hub/shaynepatton/
+cp Gemfile Gemfile.bak
+vim Gemfile
+cd ..
+cp -Rfp arai-helmets/ arai-helmets.bak
+cd arai-helmets
+bundle install
+vim .ruby-version 
+gem install pg -v '0.18.1'
+rbenv global 2.1.5
+apt-cache search postgres|grep libs
+apt-cache search postgres
+apt-cache search postgresql
+apt-cache search postgresql|lib
+apt-cache search postgresql|grep lib
+apt-cache search postgresql|grep ruby
+apt-cache search postgresql|grep devel
+vim sshkeyNew.sh
+chmod +x sshkeyNew.sh 
+mkdir bin
+mv *.sh bin/
+Capfile
+cd config/
+vim deploy.rb 
+cd deploy/
+vim staging.rb 
+mv ../arai-helmets.2.2.4/.ssh/arai_* .ssh/
+vim config/deploy.rb 
+cd config/environments/
+vim ../.env
+vim config/secrets.yml 
+vim ../.env 
+mv ../.env ../.env_arai_staging
+vim puppet/hiera/hieradata/staging.yaml 
+vim puppet/hiera/hieradata/common.yaml 
+cap staging app_server:provision
+bundle install puma
+bundle exec cap staging app_server:provision
+ssh-add -l
+ssh-add ~spatton/.ssh/arai_staging.pem 
+bundle exec cap staging puppet:apply
+mv arai-helmets arai-helmets.almost
+cat .env_arai_staging 
+history|grep install
+bundle install capistrano
+gem install capistrano 1.1.1
+cd puppet/hiera/hieradata/
+vim common.yaml 
+vim staging.yaml 
+cd manifests/
+vim site.pp 
+cd ../arai-helmets.2.2.4/
+bundle show
+bundle show puma
+cd ../arai-helmets/.ssh/
+cd ../../arai-helmets.almost/
+grep -r 1.6.2 *
+history|grep cap
+cat .ruby-version 
+grep -r nginx
+grep -r nginx|grep 1.6
+vim puppet/hiera/hieradata/common.yaml
+bundle exec cap staging app_server:upload_secrets
+pwd
+bundle exec cap staging app_server:restart
+rbenv install ruby -v 2.1.5
+rbenv install -v 2.1.5
+mv arai-helmets arai-helmets.2.2.4
+mv arai-helmets.bak/ arai-helmets
+cd ../arai-helmets
+rm Gemfile.bak 
+cat ../arai-helmets.2.2.4/.ruby-version 
+mv arai-helmets arai-helmets.dunno
+history |grep git
+cat ~spatton/.ssh/arai_staging.pem 
+ssh-keygen -y -f ~/.ssh/arai_staging.pem > ~/.ssh/arai_staging.pub
+echo arai_staging >> .ssh/arai_staging.pub 
+cp .ssh/arai_staging.p* repos/git/hub/shaynepatton/arai-helmets.2.2.4/.ssh/
+vim Capfile 
+cd dep
+cd config/deploy/
+vim production.rb 
+vim ../deploy.rb 
+cd ../
+cd sudoers.d/
+vim 60_deploy 
+vim database.yml 
+cat environments/production.rb 
+cd lib/capistrano/tasks/
+vim app_server.rake 
+vim util.rb 
+vim user.rake 
+vim bootstrap_puppet.rake 
+bundle exec cap -T
+rbenv -v
+rbenv version
+gem install bundler
+ssh ubuntu@52.1.181.94
+ssh ubuntu@52.7.77.40
+add-key
+ssh-add .ssh/arai_staging.pem 
+cd repos/git/hub/shaynepatton/arai-helmets
+cd puppet/
+cd ../config/deploy/
+cd ...
+cd repos/git/hub/shaynepatton/arai-helmets/config/
+vim deploy
+scp ubuntu@52.1.181.94:/etc/nginx/server.crt .
+scp ubuntu@52.1.181.94:/etc/nginx/server.key .
+scp server.crt ubuntu@52.7.77.40:/etc/nginx/
+scp server.crt ubuntu@52.7.77.40:/etc/nginx
+scp server.crt ubuntu@52.7.77.40:/home/ubuntu
+scp server.key ubuntu@52.7.77.40:/home/ubuntu
+bundle exec cap staging deploy
+cap staging deploy
+rm -Rf arai-helmets/
+mv arai-helmets.almost/ arai-helmets
+git branch stp_staging
+git push
+git branch commit -a m 'stp missing Stage'
+git commit -a m 'stp missing Stage'
+git commit m 'stp missing Stage'
+git add *
+git commit -a m 'stp missing Stages'
+git commit a m 'stp missing Stages'
+git commit 
+git config --global user.email "shayne.patton@boomer.digital"
+git config --global user.name "Shayne Patton"
+git del server.crt
+git remove server.crt
+git checkout -b stp_staging
+git info
+git show-branch
+git-branch -D stp_staging
+git branch-D stp_staging
+git branch -D stp_staging
+git commit -m 'stp Stages missing'
+git add .ssh/arai_staging.pub
+git push origin stp_stagin
+git push origin stp_staging
+bundle exec cap staging -T
+scp ubuntu@52.1.181.94:/home/ubuntu/araihelmets.sql .
+scp araihelmets.sql ubuntu@52.1.181.94:/home/ubuntu/araihelmets.sql 
+scp araihelmets.sql ubuntu@52.7.77.40:/home/ubuntu/araihelmets.sql 
+vim /etc/hosts
+sudo vim /etc/hosts
+ping araihelmets.com
+curl 55.7.77.40
+
+ls -alh
+cd repos/git/hub/
+dpkg -la|grep keepass
+cp ~spatton/.bashrc 
+cp ~spatton/.bashrc ~spatton/.bashrc.bak
+mkdir spatton
+mkdir lab
+mkdir lab/spatton
+lsl
+cat .bashrc
+ls .bash_profile 
+cd .ssh/
+mv shayne.patton@boomer.digital_rsa shayne.patton@boomer.digital.pem
+mv shayne.patton@boomer.digital_rsa.pub shayne.patton@boomer.digital.pub
+eval $(ssh-add)
+cd ../Dropbox/
+find . -name spatton13*.pub
+ssh-add passwords/ssh_rsa/arch/spatton13@github
+chmod 0600 passwords/ssh_rsa/arch/spatton13@github
+git clone git@github.com:spatton13/confs.git
+mv confs/ spatton/
+cd spatton/
+cd confs/
+cd bashrc/
+du -h
+du -h ../
+cat bash_history 
+cp bashrc ~spatton/.bashrc
+cp -Rf bashrc.d/ ~spatton/.bashrc.d
+cat ~spatton/.bash_history 
+. ~spatton/.bashrc
+apt-cache search gir
+apt-cache search gir|grep 1.2
+apt-cache search gir|grep 1.2|grep gtop
+sudo apt-get install gir1.2-gtop-2.0
+bash help
+help
+cat .bash_profile 
+rm .bash_profile 
+ll
+cat .bashrc.d/*
+cd Desktop/
+cp tmpHist.txt tmpHist.txt2
+sed 's ..  ' tmpHist.txt
+sed 's/^..//' tmpHist.txt > tmpHistAfter
+cat tmpHistAfter 
+sed 's/^..//' tmpHistAfter > tmpHistAfter2
+cat tmpHistAfter2
+sed 's/^..//' tmpHistAfter2 > tmpHistAfter3
+cat tmpHistAfter3
+sed 's/^...//' tmpHistAfter2 > tmpHistAfter3
+vim tmpHist*3
+vim tmpHistAfter3 
+cp .bash_history .bash_history.bak
+cp -p .bash_history .bash_history.bak
+cat Desktop/tmpHistAfter3 >> .bash_history
+cat .bash_history
+. .bashrc
+history|grep ubuntu@
+top
+rm .bash*bak
+ls .bash*
+cp -p .bashrc.d/penton_ssh_alias .bashrc.d/boomer_alias
+vim .bashrc.d/boomer_alias 
+mv repos/ repo
+cd repo/git/
+cd hub/
+mv spatton/ spatton13
+. bashrc
+sshahstaging
+cat .bashrc.d/boomer_alias 
+sshstage
+sshahstage
+vim .bashrc
+bundle exec cap staging app_server:restart
+curl 55.7.77.40
+ssh-add -l
+ssh ubuntu@52.1.181.94
+cd
+sshahstage
+nl .bash_history | sort -k 2 | uniq -f 1 | sort -n | cut -f 2 > temp_file
+cat temp_file 
+wc -l temp_file 
+cat temp_file > .bash_history
+. .bashrc
+echo $HISTCONTROL
+cp .bash_history .bash_history.bak
+history
+wc -l .bash_history
+vimdiff .bash_history .bash_history.bak 
+vim .bash_history
+awk '!seen[$0]++' .bash_history
+awk '!seen[$0]++' .bash_history > tmpHist
+wc -l tmpHist 
+vim tmpHist 
+cat tmpHist > .bash_history
+exit
+mv repos/ repo
+cd repo/git/
+cd hub/
+mv spatton/ spatton13
+. bashrc
+sshahstaging
+cat .bashrc.d/boomer_alias 
+sshstage
+sshahstage
+vim .bashrc
+history|grep ubuntu@
+history
+rm temp_file 
+history|grep n1
+grep .bashrc ls
+cd
+grep ls .bashrc
+
+grep -r ls .bashrc.d/*|grep alias
+. .bashrc
+vim .bashrc.d/gen_alias
+vimdiff .bash_history .bash_history.bak 
+mv .bash_history.bak .bash_history
+ls
+rm araihelmets.sql 
+tar cvjpf rebenv.tar.bz2 .rbenv/
+exit
+ls
+exit
+mv .bash_history.bak .bash_history
+rm araihelmets.sql 
+tar cvjpf rebenv.tar.bz2 .rbenv/
+history
+grep -r ls .bashrc.d/*|grep alias
+vim .bashrc.d/gen_alias
+cat .bash_history >> repo/git/hub/spatton13/confs/bashrc/bash_history 
+awk '!seen[$0]++' repo/git/hub/spatton13/confs/bashrc/bash_history
+rm -Rf .rbenv/
+ls
+cat .ssh/shayne.patton@boomer.digital.pub 
+ssh ubuntu@54.86.225.255
+The authenticity of host '54.86.225.255 (54.86.225.255)' can't be established.
+ECDSA key fingerprint is 5a:ea:00:23:02:db:30:02:41:58:de:60:d3:df:63:48.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '54.86.225.255' (ECDSA) to the list of known hosts.
+Permission denied (publickey).
+
+
+. .bashrc
+> ssh ubuntu@54.86.225.255
+exit
+ls
+history|grep ubuntu@
+eval $(ssh-add)
+eval $(ssh-agent)
+ssh-add -l
+ssh-add .ssh/shayne.patton@boomer.digital.pem 
+mv .ssh/shayne.patton@boomer.digital.pem .ssh/shayne.patton@boomer.digital
+whatismyip
+history
+ubuntu@54.86.225.255
+exit
+ubuntu@54.86.225.255
+> ssh ubuntu@54.86.225.255
+ssh
+eval $(ssh-agent)
+ssh-add .ssh/shayne.patton@boomer.digital
+ssh ubuntu@54.86.225.255
+exit
+ssh 192.168.1.243
+ping 192.168.1.243
+ssh 192.168.1.243
+> ssh ubuntu@54.86.225.255
+exit
+ls
+history|grep ubuntu@
+eval $(ssh-add)
+ssh-add -l
+ssh-add .ssh/shayne.patton@boomer.digital.pem 
+mv .ssh/shayne.patton@boomer.digital.pem .ssh/shayne.patton@boomer.digital
+whatismyip
+history
+ubuntu@54.86.225.255
+exit
+eval $(ssh-agent)
+echo "eval $(ssh-agent)"
+. .bashrcc
+grep sshah .bashrc.d/boomer_alias 
+head .bashrc
+head -20 .bashrc
+vim .bashrc
+echo $HOME
+. .bashrc
+sshahstage
+cat .bashrc.d/boomer_alias 
+vim .bashrc.d/gen_alias
+cat .bash_history >> repo/git/hub/spatton13/confs/bashrc/bash_history 
+awk '!seen[$0]++' repo/git/hub/spatton13/confs/bashrc/bash_history
+rm -Rf .rbenv/
+cat .ssh/shayne.patton@boomer.digital.pub 
+ssh ubuntu@54.86.225.255
+The authenticity of host '54.86.225.255 (54.86.225.255)' can't be established.
+ECDSA key fingerprint is 5a:ea:00:23:02:db:30:02:41:58:de:60:d3:df:63:48.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '54.86.225.255' (ECDSA) to the list of known hosts.
+Permission denied (publickey).
+> ssh ubuntu@54.86.225.255
+exit
+history|grep ubuntu@
+eval $(ssh-add)
+ssh-add .ssh/shayne.patton@boomer.digital.pem 
+mv .ssh/shayne.patton@boomer.digital.pem .ssh/shayne.patton@boomer.digital
+whatismyip
+ubuntu@54.86.225.255
+exit
+scp /home/spatton/Downloads/gatherandgownSSL.zip ubuntu@54.86.225.255:/home/ubuntu
+eval $(ssh-agent)
+ssh-add .ssh/shayne.patton@boomer.digital
+git clone git://github.com/sstephenson/rbenv.git .rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+rm .bash_profile 
+git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+. .bashrc
+rbenv install -v 2.1.5
+rbenv global 2.1.5
+ruby -v
+echo "gem: --no-document" > ~/.gemrc
+gem install bundler
+gem install rails
+rbenv rehash
+rails -v
+sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update; sudo apt-get install nodejs
+sudo apt-get update
+cd Desktop/
+gpg --import ../Dropbox/passwords/gpg/shayne*
+gpg --import ../Dropbox/passwords/gpg/*pub-sec.asc
+gpg --output gg_pk_pass.txt --decrypt gg_pk_pass.gpg 
+cat gg_pk_pass.txt 
+vim gg_pk_pass.txt 
+rm gg_pk_pass.gpg 
+ls Desktop/
+cd
+rails new testapp; cd testapp
+2
+git clone git@github.com:boomerdigital/boomer_website.git
+mv boomer_website/ ../repo/git/hub/shaynepatton/
+du -h
+rake db:create
+ipconfig
+ip addr
+rails server --binding=192.168.1.177
+cd ..
+rails delete testapp/
+cd testapp/
+rake db:delete
+rake db:remove
+rake db:drop
+cd ..; rm -Rf testapp/
+top
+cd Downloads/
+history|grep gatherandgownSSL.zip
+rm gatherandgownSSL.zip 
+history
+mv zdi9n0vksqgxixnrhw56u4caqr42iwpl.zip gatherandgownSSL.zip
+scp /home/spatton/Downloads/gatherandgownSSL.zip ubuntu@54.86.225.255:/home/ubuntu/
+cd ../repo/git/hub/sshayne
+cd ../repo/git/hub/shaynepatton/
+cd arai-helmets/
+ls
+bundle install
+ssh-add -l
+HOSTS=54.86.225.255 bundle exec cap production puppet:apply
+eval $(ssh-add)
+eval $(ssh-agent)
+ssh-add .ssh/shayne.patton@boomer.digital.pem 
+mv .ssh/shayne.patton@boomer.digital.pem .ssh/shayne.patton@boomer.digital
+whatismyip
+history
+ubuntu@54.86.225.255
+exit
+cd repo/git/hub/shaynepatton/
+tar cvjpf arai-helmets.stp-builds.tar.bz2 *
+rm -Rf arai-helmets/ arai-helmets.2.2.4/ arai-helmets.dunno/
+cat .env_arai_staging 
+ssh-add ~/.ssh/shayne.patton@boomer.digital
+git clone git@github.com:boomerdigital/arai-helmets.git
+history |grep gatherandgownSSL.zip
+cd arai-helmets/
+cd ../
+ls
+git clone git@github.com:boomerdigital/gather_and_gown.git
+ssh-add -l
+top
+cd /media/spatton/95369593-11e7-41e1-94fd-de92ef46e0ed/
+df -h
+cd
+cd
+eval $(ssh-agent)
+ssh-add .ssh/shayne.patton@boomer.digital
+> ssh ubuntu@54.86.225.255
+rm ssh
+ls
+ssh
+ssh ubuntu@54.86.225.255
+rails delete testapp/
+cd testapp/
+rake db:delete
+rake db:remove
+rake db:drop
+cd ..; rm -Rf testapp/
+top
+history|grep gatherandgownSSL.zip
+history
+mv zdi9n0vksqgxixnrhw56u4caqr42iwpl.zip gatherandgownSSL.zip
+scp /home/spatton/Downloads/gatherandgownSSL.zip ubuntu@54.86.225.255:/home/ubuntu/
+cd ../repo/git/hub/sshayne
+cd ../repo/git/hub/shaynepatton/
+cd arai-helmets/
+eval $(ssh-add)
+ssh-add .ssh/shayne.patton@boomer.digital.pem 
+mv .ssh/shayne.patton@boomer.digital.pem .ssh/shayne.patton@boomer.digital
+whatismyip
+history
+ubuntu@54.86.225.255
+exit
+tar cvjpf arai-helmets.stp-builds.tar.bz2 *
+rm -Rf arai-helmets/ arai-helmets.2.2.4/ arai-helmets.dunno/
+cat .env_arai_staging 
+ssh-add ~/.ssh/shayne.patton@boomer.digital
+git clone git@github.com:boomerdigital/arai-helmets.git
+history |grep gatherandgownSSL.zip
+cd arai-helmets/
+cd ../
+git clone git@github.com:boomerdigital/gather_and_gown.git
+top
+cat ssh 
+rm ssh 
+rm tmpHist 
+ls Templates/
+eval $(ssh-agent)
+ssh-add .ssh/shayne.patton@boomer.digital
+bundle
+cd repo/git/hub/shaynepatton/
+cd gather_and_gown/
+git pull
+vim Capfile 
+echo $PATH
+rbenv rehash
+echo "2.1.2" > .ruby-version 
+echo "2.1.5" > .ruby-version 
+cat .ruby-version 
+bundle install
+HOSTS=54.86.225.255 bundle exec cap production puppet:apply
+cat .ssh/
+cat .ssh/gather_and_gown.pub 
+cd /Dropbox/passwords/gpg
+cd ~/Dropbox/passwords/gpg/
+cat *pub.asc
+cat *pub-sec.asc
+du -h
+penssl req -new -newkey rsa:2048 -nodes -keyout gatherandgown.com.key -out gatherandgown.com.csr
+sudo apt-get openssl
+sudo apt-get install openssl
+apt-get purge libc-ares2 libv8-3.14.5
+openssl req -new -newkey rsa:2048 -nodes -keyout gatherandgown.com.key -out gatherandgown.com.csr
+cat *.csr
+rm gatherandgownSSL.zip 
+mv dgdo2bxwhig45fuxnnejhzkgtyht9leb.zip gatherandgownSSL.zip
+rm zdi9n0vksqgxixnrhw56u4caqr42iwpl.zip 
+cd
+cd Downloads/
+mv gatherandgownSSL.zip ../Dropbox/career/employers/Boomer/aws_keys/
+cd /Dropbox/career/employers/Boomer/aws_keys/
+cd ../Dropbox/career/employers/Boomer/aws_keys/
+cp ~/*.key .
+cp ~/*.csr .
+cp gd*crt gd_bundle-g2-g1.crt 
+cp gd*crt gatherandgown.com.crt
+cat 80c7ceb0493a7ae.crt >> gatherandgown.com.crt 
+cat gatherandgown.com.crt 
+cat *.key
+cat 80c7ceb0493a7ae.crt 
+rm gd_bundle-g2-g1.crt 80c7ceb0493a7ae.crt 
+unzip gatherandgownSSL.zip 
+cat gd_bundle-g2-g1.crt 
+ls
+ssh-add -a
+ssh-add -l
+scp *.zip ubuntu@54.86.225.255
+scp *.zip ubuntu@54.86.225.255:/home/ubuntu
+cat *pub.asc
+cat .ssh/
+cat .ssh/gather_and_gown.pub 
+cd /Dropbox/passwords/gpg
+cd ~/Dropbox/passwords/gpg/
+cat *pub.asc
+cat *pub-sec.asc
+du -h
+penssl req -new -newkey rsa:2048 -nodes -keyout gatherandgown.com.key -out gatherandgown.com.csr
+sudo apt-get openssl
+sudo apt-get install openssl
+apt-get purge libc-ares2 libv8-3.14.5
+openssl req -new -newkey rsa:2048 -nodes -keyout gatherandgown.com.key -out gatherandgown.com.csr
+cat *.csr
+rm gatherandgownSSL.zip 
+mv dgdo2bxwhig45fuxnnejhzkgtyht9leb.zip gatherandgownSSL.zip
+rm zdi9n0vksqgxixnrhw56u4caqr42iwpl.zip 
+cd
+cd Downloads/
+mv gatherandgownSSL.zip ../Dropbox/career/employers/Boomer/aws_keys/
+cd /Dropbox/career/employers/Boomer/aws_keys/
+cd ../Dropbox/career/employers/Boomer/aws_keys/
+cp ~/*.key .
+cp ~/*.csr .
+cp gd*crt gd_bundle-g2-g1.crt 
+cp gd*crt gatherandgown.com.crt
+cat 80c7ceb0493a7ae.crt >> gatherandgown.com.crt 
+cat gatherandgown.com.crt 
+cat *.key
+cat 80c7ceb0493a7ae.crt 
+rm gd_bundle-g2-g1.crt 80c7ceb0493a7ae.crt 
+unzip gatherandgownSSL.zip 
+cat gd_bundle-g2-g1.crt 
+ssh-add -a
+scp *.zip ubuntu@54.86.225.255
+scp *.zip ubuntu@54.86.225.255:/home/ubuntu
+cat *pub.asc
+cp ../arai-helmets/.ruby-version .
+cat .ruby-version 
+git add .ruby-version 
+gadd
+gad
+mkdir .ssh
+cd .ssh/
+ssh-keygen -t rsa -b 4096 -C "boomer.digital-site"
+mv .ssh/boomer.digital-site ~spatton/tmp/
+vim .ssh/boomer.digital-site.pub 
+cp -Rf *.key/.ssh/ boomer_website/
+cp boomer_website.stp.key/.ruby-version boomer_website/
+cd boomer_website
+cp ../boomer_website.stp.key/Gemfile .
+cp ../progressive_companies/Capfile .
+bundle install
+mkdir config
+cp -Rf ../progressive_companies/config/deploy/ config/
+ls config/
+cp -Rf ../progressive_companies/config/sudoers.d/ config/
+mkdir -p lib/capistrano/
+cp -Rf ../progressive_companies/lib/capistrano/tasks/ lib/capistrano/
+cp -Rf ../progressive_companies/puppet/ .
+gad *
+ls config
+cp ../progressive_companies/config/deploy.rb config/
+vim config/deploy.rb 
+cd config/
+mkdir environments
+cp ../../progressive_companies/config/environments/production.rb environments/
+ls ../../
+cp ../../.env_arai_staging ../../.env_boomer_prod
+cp ../../progressive_companies/config/secrets.yml .
+vim secrets.yml 
+cd ..
+vim puppet/hiera/hieradata/staging.yaml 
+vim environments/production.rb 
+history|grep vim
+vim ../.env_boomer_prod 
+vim config/environments/production.rb 
+find . -name database.yml
+find ../arai-helmets -name database.yml
+vim ../arai-helmets/config/database.yml 
+vim config/secrets.yml 
+git add *
+gcom
+git commit -m "adding cap/puppet framework to project"
+ssh-add -l
+git push origin master
+cat .git/config 
+gad .ruby-version 
+gad .ssh/*
+git commit 'm "add key & version"
+ls
+
+
+cat
+exit
+;
+git commit -m "add key & version"
+git diff
+git diff master origin/master
+alias gdm="git diff master origin/master"
+gdm
+vim ~spatton/.bashrc.d/git_alias 
+vim ~spatton/.bashrc.d/git_alias
+git log
+git log --pretty=oneline
+git config --global push.default simple
+git push
+git pull
+vim puppet/hiera/hieradata/production.yaml 
+vim puppet/hiera/hieradata/common.yaml 
+grep -R ubuntu@54.164.153.16
+grep -R ubuntu@54.164.153.16 *
+cd config/environments/
+vim production.rb 
+grep -R 54.164.153.16 *
+grep -R "54.164.153.16" *
+cd ../../
+grep -r "54.164.153.16" *
+vim config/deploy/staging.rb 
+vim config/deploy/production.rb 
+bundle exec cap staging app_server:provision
+ls .ssh/
+find / -name boomer.digital-site
+find ~spatton/ -name boomer.digital-site
+sudo updatedb 
+locate boomer.digital-site
+history|grep boomer.digital-site
+cd .ssh; ssh-keygen -t rsa -b 4096 -C "boomer.digital-site"
+ls
+cat boomer.digital-site.pub 
+mv boomer.digital-site ~spatton/tmp/
+history|grep boomer.digital-site
+cd .ssh; ssh-keygen -t rsa -b 4096 -C "boomer.digital-site"
+cat boomer.digital-site.pub 
+mv boomer.digital-site ~spatton/tmp/
+gad
+sshahstage
+cd ..
+mv .bashrc.d/ tmp/bashrc.d/
+mv .bashrc tmp/bashrc
+rm Screenshot\ from\ 201*
+cp repo/git/hub/spatton13/confs/bashrc/bashrc .bashrc
+cp -Rf repo/git/hub/spatton13/confs/bashrc/bashrc.d/ .bashrc.d/
+ls -alh .bashrc*
+ls .bashrc.d/
+ls -alh tmp/bashrc.d/
+cd .bashrc.d/
+ls
+cat bashrc_alias 
+ebrc
+exit
+ebrc
+gad
+ssh-add -l
+exit
+ebrc
+ebrc
+ssh-add -l
+cd .bashrc.d/
+cat ansible_alias 
+rm ansible_alias 
+cat defaults 
+cat bashmarks 
+l
+cat user-path 
+mv penton_ssh_alias boomer_ssh_alias
+vim boomer_ssh_alias 
+. ../.bashrc
+ls
+. boomer_ssh_alias 
+bdpw
+gad
+exit
+gad
+ebrc
+sshahstage
+exit
+sshahstage
+cd .bashrc.d/
+ls
+head boomer_ssh_alias 
+head git_alias 
+echo $GIT_AUTHOR_EMAIL
+vim git_alias 
+tail git_alias 
+vim ../.bashrc
+ebrc
+gad
+cat boomer_ssh_alias 
+bdpw
+vim boomer_ssh_alias 
+exit
+ebrc
+gad
+vim boomer_ssh_alias 
+cd .bashrc.d/
+cat defaults 
+echo $PAGER
+cat gen_alias 
+ls
+mkdir ../tmp/whatever/test/alias
+cat tot-ec2_alias 
+ec2t
+cat boomer_ssh_alias 
+bdpw
+ssh-add -l
+exit
+cat boomer_ssh_alias 
+ssh-add -l
+ls .ssh/
+ebrc
+bdwp
+bdpw
+cat .bashrc.d/boomer_ssh_alias 
+cat .bashrc.d/boomer_ssh_alias >> .bashrc.d/servers_alias 
+exit
+bdpw
+cd .bashrc.d/
+ls
+grep history *
+vim tot-ec2_alias 
+vim servers_alias 
+bdpw
+exit
+cd .bashrc.d/
+ls
+grep history *
+vim tot-ec2_alias 
+vim servers_alias 
+gad
+$1
+echo $1
+myvars
+myvars|grep gad
+ebrc
+tail tmp/bashrc
+vim .bashrc
+. .bashrc
+rbenv
+. .bashrc.d/servers_alias 
+bdpw
+exit
+. .bashrc.d/servers_alias 
+bdpw
+rbenv
+cd .bashrc.d/
+rm servers_alias boomer_ssh_alias 
+ls
+ec2t
+vim tot-ec2_alias 
+exit
+ect2
+ec2t
+bdpq
+bdpw
+vim .bashrc.d/tot-ec2_alias 
+exit
+rm gd_bundle-g2-g1.crt 80c7ceb0493a7ae.crt 
+unzip gatherandgownSSL.zip 
+cat gd_bundle-g2-g1.crt 
+ssh-add -a
+scp *.zip ubuntu@54.86.225.255
+scp *.zip ubuntu@54.86.225.255:/home/ubuntu
+cat *pub.asc
+eval $(ssh-agent)
+ssh-add .ssh/shayne.patton@boomer.digital
+ssh ubuntu@54.86.225.255
+ls
+ssh ubuntu@ 52.21.107.71
+chown 644 Dropbox/passwords/ssh_rsa/shayne.patton@boomBox
+chmod 644 Dropbox/passwords/ssh_rsa/shayne.patton@boomBox
+chmod 600 Dropbox/passwords/ssh_rsa/shayne.patton@boomBox
+ssh-add Dropbox/passwords/ssh_rsa/shayne.patton@boomBox
+chmod 600 Dropbox/career/employers/Boomer/aws_keys/boomer-digital-web.pem 
+ssh-add Dropbox/career/employers/Boomer/aws_keys/boomer-digital-web.pem 
+history|grep ssh-add
+history|grep ssh-add|grep ubuntu
+ssh ubuntu@52.21.107.71
+ssh-add -l
+cd ../Dropbox/career/employers/Boomer/aws_keys/
+cp ~/*.key .
+cp ~/*.csr .
+cp gd*crt gd_bundle-g2-g1.crt 
+cp gd*crt gatherandgown.com.crt
+cat 80c7ceb0493a7ae.crt >> gatherandgown.com.crt 
+cat gatherandgown.com.crt 
+cat *.key
+cat 80c7ceb0493a7ae.crt 
+rm gd_bundle-g2-g1.crt 80c7ceb0493a7ae.crt 
+unzip gatherandgownSSL.zip 
+cat gd_bundle-g2-g1.crt 
+ssh-add -a
+scp *.zip ubuntu@54.86.225.255
+scp *.zip ubuntu@54.86.225.255:/home/ubuntu
+cat *pub.asc
+ssh ubuntu@54.174.96.100
+cd ../arai-helmets/
+vim Gemfile
+ls .ssh/
+cd ..
+git clone git@github.com:boomerdigital/gather_and_gown.git
+git clone git@github.com:boomerdigital/progressive_companies.git
+rm -Rf progressive_companies/
+git clone git@github.com:railsdog/progressive_companies.git
+mv boomer_website/ boomer_website.stp.key
+history|grep boomer_website|grep git|grep clone
+git clone git@github.com:boomerdigital/boomer_website.git
+cd boomer_website
+cd ../progressive_companies/
+sal
+cat ~/.ssh/shayne.patton@boomer.digital.pub 
+cd
+ls tmp/
+history|grep boomer.digital-site
+locate boomer.digital-site
+cd tmp/
+scp boomer.digital-site deploy@ 52.21.107.71:/home/ubuntu/.ssh/
+ssh-add Dropbox/career/employers/Boomer/aws_keys/boomer-digital-web.pem
+ssh-add ../Dropbox/career/employers/Boomer/aws_keys/boomer-digital-web.pem
+scp boomer.digital-site deploy@ 52.21.107.71:/home/deploy/.ssh/
+ssh-add -l
+scp boomer.digital-site ubuntu@ 52.21.107.71:/home/ubuntu
+scp boomer.digital-site ubuntu@52.21.107.71:/home/ubuntu
+ls
+for f in ~/.bashrc.d/; do source $f; done
+for f in ~/.bashrc.d*/; do source $f; done
+for file in ../.bashrc.d/* ; do if [ -f "$file" ] ; then . "$file" fi done; ;
+for file in * ; do   if [ -f "$file" ] ; then     . "$file";   fi; done
+for file in /home/spatton/.bashrc.d/* ; do   if [ -f "$file" ] ; then     . "$file";   fi; done
+eval $(find ~spatton/.bashrc.d/ -maxdepth 1 -type f -exec echo . \'{}\'';' \;)
+gad
+vim .bashrc
+vim ../.bashrc
+vim ../.bashrc.d/servers_alias 
+bundle
+vim Capfile 
+echo $PATH
+rbenv rehash
+echo "2.1.2" > .ruby-version 
+echo "2.1.5" > .ruby-version 
+cat .ruby-version 
+bundle install
+cat .ssh/gather_and_gown.pub 
+cd /Dropbox/passwords/gpg
+cd ~/Dropbox/passwords/gpg/
+cat *pub.asc
+cat *pub-sec.asc
+du -h
+penssl req -new -newkey rsa:2048 -nodes -keyout gatherandgown.com.key -out gatherandgown.com.csr
+sudo apt-get openssl
+sudo apt-get install openssl
+apt-get purge libc-ares2 libv8-3.14.5
+openssl req -new -newkey rsa:2048 -nodes -keyout gatherandgown.com.key -out gatherandgown.com.csr
+cat *.csr
+rm gatherandgownSSL.zip 
+mv dgdo2bxwhig45fuxnnejhzkgtyht9leb.zip gatherandgownSSL.zip
+rm zdi9n0vksqgxixnrhw56u4caqr42iwpl.zip 
+cd Downloads/
+mv gatherandgownSSL.zip ../Dropbox/career/employers/Boomer/aws_keys/
+cd /Dropbox/career/employers/Boomer/aws_keys/
+cd ../Dropbox/career/employers/Boomer/aws_keys/
+cp ~/*.key .
+cp ~/*.csr .
+cp gd*crt gd_bundle-g2-g1.crt 
+cp gd*crt gatherandgown.com.crt
+cat gatherandgown.com.crt 
+cat *.key
+cat 80c7ceb0493a7ae.crt 
+rm gd_bundle-g2-g1.crt 80c7ceb0493a7ae.crt 
+unzip gatherandgownSSL.zip 
+cat gd_bundle-g2-g1.crt 
+ssh-add -a
+scp *.zip ubuntu@54.86.225.255
+scp *.zip ubuntu@54.86.225.255:/home/ubuntu
+cat *pub.asc
+cd repo/git/hub/shaynepatton/
+cd gather_and_gown/
+HOSTS=54.86.225.255 bundle exec cap production puppet:apply
+USER=deploy HOSTS=54.86.225.255 bundle exec cap production puppet:apply
+HOSTS=54.86.225.255 bundle exec cap production puma:top
+HOSTS=54.86.225.255 bundle exec cap production puma:stop
+HOSTS=54.86.225.255 bundle exec cap production puma:start
+cd Dropbox/career/employers/Boomer/aws_keys/keypairs_aws/
+diff gatherandgown.com.crt gd_bundle-g2-g1.crt 
+mkdir tmp/
+scp ubuntu@54.86.225.255:/home/ubuntu/gatherandgown.com.key .
+scp ubuntu@54.86.225.255:/home/ubuntu/gd_* .
+scp ubuntu@54.86.225.255:/home/ubuntu/8* .
+vim gd_bundle-g2-g1.crt 
+cp -p gd_bundle-g2-g1.crt gatherandgown.com.crt
+cat 80c7ceb0493a7ae.crt gatherandgown.com.crt 
+cat 80c7ceb0493a7ae.crt >> gatherandgown.com.crt 
+histroy
+cp -p 80c7ceb0493a7ae.crt gatherandgown.com.crt
+cat gd_bundle-g2-g1.crt >> gatherandgown.com.crt 
+~history
+history
+scp ubuntu@54.86.225.255:/home/ubuntu/gatherandgown.com* .
+scp gatherandgown.com.* ubuntu@54.174.96.100:/home/ubuntu
+cd ../repo/git/hub/shaynepatton/gather_and_gown/
+USER=deploy HOSTS=54.174.96.100 bundle exec cap production puppet:apply
+HOSTS=54.174.96.100 bundle exec cap production puma:stop
+HOSTS=54.174.96.100 bundle exec cap production puma:start
+cd ../boomer_website/
+git pull
+vim Gemfile
+ls -alh
+gad .ssh/*
+cp ../arai-helmets/Capfile .
+gad Capfile 
+mkdir lib
+mkdir config
+mkdir lib/capistrano
+cp -Rf ../arai-helmets/config/ .
+ls config
+ls config/
+cp -Rf ../arai-helmets/lib/capistrano/tasks/ lib/capistrano/
+cp -Rf ../arai-helmets/puppet/ .
+ls puppet/
+cd ..
+ls .ssh/
+cd
+cd tmp/
+rm * 
+git clone git@github.com:boomerdigital/boomer_website.git
+rm -Rf boomer_website/
+cd ../repo/git/hub/shaynepatton/
+rm *.bz2
+ls
+df -h
+cat ~spatton/.ssh/shayne.patton@boomer.digital.pub 
+cat ~spatton/.ssh/shayne.patton@boomer.digital
+cd boomer_website
+cat .ssh/
+cat .ssh/boomer.digital-site.pub 
+history|grep boomer.digital.site
+ssh-add -l
+locate boomer.digital-site
+cd .ssh; ssh-keygen -t rsa -b 4096 -C "boomer.digital-site"
+mv boomer.digital-site ~spatton/tmp/
+history|grep boomer.digital-site
+cd .ssh/
+cat boomer.digital-site.pub 
+history|grep puppet
+cd ..
+bundle exec cap production app_server:provision
+bundle exec cap production puppet:noop
+bundle exec cap production puppet:apply
+bundle exec cap production app_server:restart
+ls
+bundle exec cap production deploy
+ssh-add -l
+ping boomer.digital
+gad
+bdigpw
+ec2t
+vim .bashrc.d/tot-ec2_alias 
+cd .bashrc.d/
+ls
+cat user-path 
+gad
+cat git_alias 
+gpo
+gcom
+gll
+gad
+ec2t
+ssh-add -l
+gad
+ect2
+ec2t
+ls
+mkdirg tmp/test/mkdirg/deeper

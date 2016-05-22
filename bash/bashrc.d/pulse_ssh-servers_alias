@@ -1,0 +1,2 @@
+alias mgt01="ssh -A 10.8.128.11"
+alias src01="ssh -A 10.8.128.20"

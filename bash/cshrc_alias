@@ -1,0 +1,742 @@
+# $Header: /home/jsellens/RCS/.cshrc,v 1.34 2014/04/02 04:03:40 jsellens Exp jsellens $
+# My "standard" one size fits all .cshrc
+
+# note for freshbooks-land
+# alias errortail='sudo tail -F /var/log/httpd/error_log | egrep -v --line-buffered '\''favicon|autodiscover|campaigns|SlowPageLoad|could not find system|ie6\.css|edit\.css|174\.127\.132\.64|Setting notify url'\'''
+
+# Note about terminals - I had the tailing spaces on the line being
+# a cut and paste pain problem in mutt
+# http://blogs.sun.com/levon/entry/begone_trailing_spaces
+# so
+# infocmp xterm-color | sed -e 's/am, km,/am, bce, km,/' > /tmp/xterm-color
+# tic /tmp/xterm-color
+# which creates ~/.terminfo/x/xterm-color with the bce attribute
+# ta da!
+
+
+
+umask 022
+limit coredumpsize 0
+
+if ( $?SHELL_SET_UP ) goto shell_setup_done
+    if ( -f /software/mfcf-basics/data/architecture.setenv ) then
+	source /software/mfcf-basics/data/architecture.setenv
+    endif
+    setenv	OS		"unknown"
+    setenv	OSREV		"unknown"
+    setenv	OSKVER		"unknown"
+    setenv	_UNAME		"unknown"
+    # It's probably safe to assume that everything has a uname command
+    # now, but old habits die hard ...
+    setenv	_UNAMECMD	/bin/uname
+    if ( ! -f $_UNAMECMD ) setenv	_UNAMECMD	/usr/bin/uname
+    if ( -f $_UNAMECMD ) then
+	setenv OS	`$_UNAMECMD`
+	setenv OSREV	`$_UNAMECMD -r`
+	setenv OSKVER	`$_UNAMECMD -v`
+	setenv _UNAME	`$_UNAMECMD -n`
+	if ( "$OS" == "SunOS" ) then
+	    if ( "$OSREV" =~ 5* ) setenv OS SOLARIS
+	endif
+    endif
+
+    # on john see .cshrc.local for LANG
+    # considering doing everywhere setenv LANG en_CA.UTF-8
+    # which seems happier on sellens ubuntu and looks like xterm
+    # will set the fonts etc right if so?
+    if ( $?LANG ) then
+	# need to adjust LANG early, since manpath may use LANG ...
+	# I can't speak/read/write German
+	if ( "$LANG" =~ de_* ) unsetenv LANG
+    endif
+    setenv	LC_COLLATE	C	# "normal" collation please
+
+    setenv	GS_DEVICE	x11
+    setenv	GS_FONTPATH	$HOME/Fonts/www.larabiefonts.com:$HOME/Fonts/corel
+#    setenv	WEBSTERHOST	gc8.generalconcepts.com
+#    setenv	WEBSTERHOST	gc4.generalconcepts.com
+
+    set path_prefix=""
+    set path_suffix=""
+    switch ( "$_UNAME" )
+	case "mail.on":
+	case "nds.net":
+	case "odin.net.rogers.wave.ca":
+	    set path_prefix="$path_prefix /opt/security/bin /opt/GCC281/bin /opt/gnu/bin /opt/local/bin"
+	    # set path_suffix="$path_suffix "
+	    breaksw
+    endsw
+    # set path = ( /bin /usr/{bin,games} )
+    set path = ( /bin /usr/bin )
+    # set path = ($path /usr/local/sbin /sbin /usr/sbin /usr/local/bin/games)
+    # set path = ($path /usr/local/sbin /sbin /usr/sbin )
+    if ( -f /bin/showpath ) then
+	# setenv PATH `/bin/showpath u=maintainer ${HOME}/bin standard`
+	setenv PATH `/bin/showpath u=maintainer standard`
+    endif
+    # /opt/LINKS is my personal idea of link collection on Solaris
+    # path prefixing, in reverse priority order
+    foreach i ( \
+	$path_prefix \
+        /usr/X11R6/bin \
+	# /local/bin \
+	/usr/local/bin \
+	# /local/acct/bin \
+	/syonex/bin \
+	$HOME/bin \
+	$HOME/bin-$OS \
+	)
+        if ( -d $i ) then
+            setenv PATH ${i}:${PATH}
+        endif
+    end
+    # path suffixing, in priority order
+    foreach i ( \
+	$path_suffix \
+	/usr/local/sbin \
+	/sbin \
+	/usr/sbin \
+	/opt/dell/srvadmin/bin \
+	/opt/dell/srvadmin/sbin \
+	/var/master/control/utilities \
+	/master/internal/billing/tools \
+	# /opt/csw/bin \
+	# /opt/csw/sbin \
+	# /usr/sfw/bin \
+	# /usr/sfw/sbin \
+	# /usr/openwin/bin /usr/dt/bin \
+	# /local/customers/bin /apps/ar/bin \
+	# /usr/local/majordomo/bin \
+	# /usr/ucb \
+	# /export/home/crtsol/bin \
+	# /usr/ccs/bin \
+	/usr/games \
+	/usr/local/bin/games \
+	# /usr/local/req-1.2a/bin \
+	# /usr/local/jdk1.1.5/bin \
+	# /usr/local/amanda/sbin \
+	# /usr/local/nocol/bin \
+	/usr/kerberos/bin \
+	# /usr/kerberos/etc \
+	# /usr/site/utilities \
+	# /usr/local/rt2/bin \
+	# /opt/LINKS/bin \
+	)
+	if ( -d $i ) then
+	    setenv PATH ${PATH}:$i
+	endif
+    end
+    unset i
+
+    # should really use the FreeBSD manpath command here to set the
+    # hope no one else has manpath that works differently ...
+    if ( -f /bin/showpath ) then
+	setenv MANPATH `/bin/showpath c=man u=maintainer standard`
+    else if ( -f /usr/bin/manpath ) then
+	# avoid potential complains from manpath(1)
+	unsetenv MANPATH
+	setenv MANPATH `manpath`
+    else if ( -f /etc/man.config ) then
+	# assume that the redhat-ish system is configured correctly
+	unsetenv MANPATH
+    else
+	# initial MANPATH, but then we would need a tool to only add something
+	# to MANPATH if it's not already there.  Gee - something like showpath
+	# would be nice ....
+	# setenv MANPATH "$HOME/man:/usr/share/man:/usr/X11R6/man:/usr/local/man"
+	setenv MANPATH "$HOME/man"
+	# MANPATH suffixing, in priority order
+	foreach i ( \
+	    # /opt/csw/man \
+	    /usr/share/man \
+	    /usr/local/man \
+	    /usr/X11R6/man \
+	    # /usr/openwin/man \
+	    # /usr/dt/man \
+	    /usr/local/pilot/man \
+	    # /usr/share/perl/man \
+	    # /usr/local/lib/perl5/man \
+	    # /usr/local/lib/perl5/5.00503/man \
+	    # /usr/local/req-1.2a/man \
+	    # /usr/local/amanda/share/man \
+	    # /usr/local/nocol/man \
+	    # /opt/LINKS/man \
+	    )
+	    if ( -d $i ) then
+		setenv MANPATH ${MANPATH}:$i
+	    endif
+	end
+	unset i
+    endif
+
+    setenv	HOSTNAME	`hostname`
+
+    foreach i ( /usr/bin/vi /bin/vi )
+	if ( -f $i ) then
+	    setenv	EDITOR		$i
+	    break
+	endif
+    end
+    setenv	LOCKEDITOR	$EDITOR
+    set	stdex="optimize sw=4 tabstop=8 autoindent showmatch"
+    setenv	EXINIT		"set $stdex"
+    if ( $EDITOR =~ *software* ) then
+	setenv	EXINIT		"set $stdex checkchange"
+    endif
+    setenv	NEXINIT		"set exrc noflash $stdex"
+    # see also http://www.vex.net/~x/python_and_vim.html
+
+    # setenv	VIMINIT		"set compatible $stdex"
+    # exrc means read local .exrc / .vimrc files
+    # secure means disable unsafe commands in local .vimrc files
+    setenv	VIMINIT		"set compatible exrc secure $stdex"
+    # turn off filetype, which turns off syntax highlighting and the
+    # annoying auto-comment indicator on next line in "conf" files
+    # E319: Sorry, the command is not available in this version: filetype off
+    # on ubuntu install vim-gui-common
+    # http://www.thegeekstuff.com/2009/09/how-to-fix-vi-vim-editor-error-e319-sorry-the-command-is-not-available-in-this-version/
+    # apt-get install vim-gui-common
+    setenv VIMINIT "$VIMINIT|filetype off"
+    # override VIMINIT for freshbooks in .cshrc.local because
+    # I'm too lazy now to figure out in here if I'm freshbooks
+    unset stdex
+    # letter size, no outlines, 1 up
+    setenv	MPAGE		"-bletter -o -1"
+    setenv	ENSCRIPT	"--output=-"
+    setenv	PAGER		/usr/bin/more
+    if ( ! -f $PAGER ) setenv	PAGER		/bin/more
+    if ( ! -f $PAGER ) unsetenv	PAGER
+    # don't clear/flip screen on exit, quit at EOF, prompt like more
+    setenv	LESS		"--quiet --QUIT-AT-EOF --no-init --long-prompt"
+    # setenv	LESS_IS_MORE	1
+    # # if LESS_IS_MORE is set, and it's actually less, it uses MORE, not LESS
+    # setenv	MORE		-X
+    # stupid redhat/centos trying to make me use lesspipe.sh /etc/profile.d/less*
+    # Could also put --no-lessopen in the $LESS options
+    unsetenv LESSOPEN
+
+ #  setenv	ORGANIZATION	"DCS Covert Operations Squad"
+ #  setenv	ORGANIZATION	"UW Software Commando Corps"
+    setenv	HOSTALIASES	$HOME/etc/hostaliases
+ # this confuses ultrix
+ #  setenv	TZ		EST5EDT
+    setenv	PGPPATH		$HOME/.pgp
+    setenv	PRINTER		jms-sets-no-default-printer
+    setenv	PRINTER		hp2200
+    setenv	MAILRECORD	$HOME/mail/Outgoing
+    setenv	NOMETAMAIL	"Thank You"
+    # for metamail's showpicture command
+    setenv	X_VIEWER	"xv -geometry +1+1"
+    # setenv	NNTPSERVER	nntp.uunet.ca
+    # nnrp1.uunet.ca --> nnrp1.ca.mci.com
+    setenv	NNTPSERVER	localmail.syonex.com
+    setenv	NEWSARCHIVE	$HOME/news/Outgoing
+    setenv	AUTHORCOPY	$HOME/news/Outgoing
+    setenv	NEWSBOX		$HOME/news
+    setenv	NEWSPOSTER	"postnews -h %h"
+    setenv	NEWSPOSTER	"Pnews -h %h"
+    setenv	FAST_PNEWS	"yes"
+    setenv	RNINIT \
+"+x +X -S -t -e -m -M -h +hkeywords +horganization +hfrom +hlines +hsummary -Hdate"
+
+    setenv	TEXINPUTS	.:$HOME/lib:$HOME/tex/inputs:/usr/local/lib/latex2html/texinputs:
+    setenv	TEXINPUTS	.:$HOME/NOBACKUP/texlinks:
+    setenv	TEXINPUTS	.:$HOME/projects/texinputs/mine:$HOME/projects/texinputs/inputs:$HOME/NOBACKUP/texlinks:
+    # see about putting NOBACKUP/texlinks at the end
+    # The // at the end of a path means recurse under there
+    setenv	TEXINPUTS	.:$HOME/projects/texinputs/mine:$HOME/projects/texinputs/inputs::$HOME/NOBACKUP/texlinks:$HOME/projects/texinputs/ctan//
+    setenv	DVIPSHEADERS	$TEXINPUTS
+ #  setenv	MFINPUTS	.:/usr/lib/mf/bases:/usr/lib/mf/fonts/cm/MFsrc
+ #  setenv	MFBASES		.:/usr/lib/mf/bases
+
+    # hylafax stuff
+    setenv	FAXCOVER	$HOME/fax/jms-cover.ps
+    # setenv	FAXSERVER	24.65.54.138.on.wave.home.com
+    # let's assume we always proxy fax home via "proxyhome" ...
+    # nope - don't work too good
+    # setenv	FAXSERVER	localhost
+    # setenv	FAXSERVER	gc1.generalconcepts.com
+    # setenv	SNPPSERVER	${FAXSERVER}:4440
+
+    # per-network customization
+    # HTTP_PROXY is used by fetch(3)
+    set gateway="unknown"
+    if ( -f $HOME/bin/gateway ) then
+	set gateway=`gateway`
+    endif
+    switch ( "$gateway" )
+	case "192.168.16.254":
+	    setenv HTTP_PROXY http://squid.t0.syonex.com:3128/
+	    breaksw
+	case "10.2.1.1":
+	    # go across the private link to the t3 one
+	    setenv HTTP_PROXY http://squid.t3.syonex.com:3128/
+	    breaksw
+	case "10.2.1.6":
+	    # go across the private link to the t3 one
+	    setenv HTTP_PROXY http://squid.t3.syonex.com:3128/
+	    breaksw
+	case "10.3.1.1":
+	    setenv HTTP_PROXY http://squid.t3.syonex.com:3128/
+	    breaksw
+	default:
+	    switch ( "$HOSTNAME" )
+		case "s5.syonex.com":
+		    # no HTTP_PROXY here
+		    breaksw
+		case "*.t0.syonex.com":
+		    setenv HTTP_PROXY http://squid.t0.syonex.com:3128/
+		    breaksw
+		case "*.t1.syonex.com":
+		# case "*.syonex.com":
+		case "aec1.aecdaily.com":
+		case "aec2.aecdaily.com":
+		case "db1.aecdaily.com":
+		case "db2.aecdaily.com":
+		case "aim1.aimtechglobal.com":
+		case "aim2.aimtechglobal.com":
+		    setenv HTTP_PROXY http://squid.t3.syonex.com:3128/
+		    breaksw
+	    endsw
+	    breaksw
+    endsw
+    unset gateway
+
+    # per-host customization - see also $HOME/.cshrc.local below
+    switch ( "$HOSTNAME" )
+	case "gc0.generalconcepts.com":
+	    # available via proxyhome
+	    setenv	FAXSERVER	localhost
+	    setenv	SNPPSERVER	${FAXSERVER}:4440
+	    # the pilot-link tools observe this
+	    setenv	PILOTPORT	/dev/cuaa0
+	    setenv	PILOTRATE	57600
+	    breaksw
+    endsw
+
+
+    # other environment variables that are nice to have
+    setenv RSYNC_RSH ssh
+    setenv CVS_RSH ssh
+    # I think this is likely safe, and likely makes things faster
+    # but not supported in more recent versions, so goodbye (july 4 2010)
+    # setenv SSH_CIPHER blowfish
+
+    # debian ubuntu apt-get wants http_proxy
+    if ( $?HTTP_PROXY ) then
+	setenv http_proxy "$HTTP_PROXY"
+    endif
+
+    # 2013/11/08 - let's try mutt by default for a while ....
+    setenv MAILCMD mutt
+    setenv SYMAIL mutt
+
+
+    # Most machines are fast enough that this doesn't help much anymore,
+    # and sometimes gets in the way ...
+    # setenv SHELL_SET_UP	"Hi there"
+
+shell_setup_done:
+
+# some system/shells set a bunch of stuff up for us, to "help us"
+# e.g. red hat has /etc/csh.cshrc which sources /etc/profile.d/*.csh
+# which provides aliases for vi and ls - dumbasses
+    unalias *
+
+ # stupid braindead AIX sets TERM even if there is no terminal, and
+ # it's not an interactive shell - idiots
+if ( $?prompt && $?TERM && ! $?TERM_SET_UP ) then  # set up for terminal
+    stty -tostop crt decctlq
+    stty kill  crt
+    if ( $TERM == "cons25" ) then
+	stty erase  crt
+	kbdcontrol \
+	    -f 1 qdp \
+	    -f 2 qkp \
+	    -f 8 "" \
+	    -f 9  \
+	    -f 10 "" \
+	    -f 11 "" \
+	    -f 12 ""
+    endif
+    if ( ! $?TERMCAP ) then
+#	if ( -f /software/termcap/bin/setterm ) then
+#	    set noglob
+#	    eval `setterm  sytek:vt220-s  dialup:vt220-s  default:vc404`
+#	    unset noglob
+#	endif
+	if ( $TERM =~ xterm* ) then
+	    # just in case we have xterm-color or something else unknown
+	    # tset - -I -Q >& /dev/null
+	    tput clear >& /dev/null
+	    if ( $status != 0 ) setenv TERM xterm
+	    set noglob		# guard against csh use ...
+	    # seems to be useful to guard against ! and ^ in resize output
+	    set histchars
+	    eval `resize`
+	    unset histchars
+	    unset noglob
+	    # I *always* want ^C and ^? (I hope)
+	    stty intr ^C erase '^?' kill ^X crt
+	endif
+    else
+	# for xterm (should be always) set tty properly
+#	if ( -f /software/termcap/bin/tset ) then
+#	    tset -Q -T
+#	endif
+	# I *always* want ^C and ^? (I hope)
+	stty intr ^C erase '^?' kill ^X crt
+    endif
+
+# no longer have any machines with the xdisplay command ... :-)
+#    if ( $TERM =~ xterm* && ! $?DISPLAY ) then
+#	setenv DISPLAY `xdisplay -D`
+#    endif
+
+    setenv TERM_SET_UP	"Hi there"
+endif
+
+
+set	ignoreeof nosymlinkmsg sanequote exitstatus
+set	listpathnum noclobber notify filec # tenex=''
+if ( $?tcsh ) then
+    # guard against tcsh edit annoyances :-)
+    # unset edit also removes file completion ... :-(
+    # unset	edit
+    bindkey -b C-[ complete-word
+    bindkey -b C-X kill-whole-line
+    bindkey -b C-W delete-word
+    unset	addsuffix
+endif
+if ( $?autologout ) unset autologout
+set	backgroundpriority=0
+set	cdpath=(. ~ ~/www/generalconcepts/jms) fignore = (.o .aux)
+set	news=/usr/lib/news
+set	active=$news/active nhistory=$news/history
+
+if ( ! $?mail )		set mail=/var/mail/$user
+if ( ! $?junkmail )	set junkmail=/var/mail/jsjunk
+if ( ! $?gcmail )	set gcmail=/var/mail/gcjs
+if ( ! $?gnmail )	set gnmail=/var/mail/gnac
+
+alias gmail 'tail \!* $gcmail'
+alias wmail 'tail \!* $gnmail'
+alias tmail 'tail \!* $mail'
+alias jmail 'tail \!* $junkmail'
+alias tlog  'tail \!* /var/log/maillog'
+alias readmostmail env MAILDIRS=\"NEW PRI_1 PRI_2 PRI_3\" readmail
+alias readallmail env MAILDIRS=\"NEW PRI_1 PRI_2 PRI_3 PENDING\" readmail
+
+
+# if ( ! $?prompt ) exit
+if ( ! $?prompt ) goto skipprompt
+    # Hmmm - some linuxes like to set these for me.
+    # So I'm just going to force them the way I want them.
+    # if ( ! $?history )	set history=100
+    # if ( ! $?savehist )	set savehist=20
+    set history=100
+    set savehist=20
+    set prompt_name=$HOSTNAME
+    set suprompt_name=$HOSTNAME
+    set user_name=""
+    if ( "$USER" != "jsellens" ) set user_name="$USER@"
+    if ( $?tcsh ) then
+	set promptchars="%#"
+	if ( "$uid" == 0 ) then
+	    set prompt="\!-${user_name}$suprompt_name## "
+	else
+	    set prompt="\!-${user_name}$prompt_name-> "
+	endif
+    else
+	#### if ( "$prompt" == "# " || "$prompt" == "#" ) then
+	if ( "$prompt" =~ *\#* ) then
+	    set prompt="\!-${user_name}$suprompt_name## "
+	else
+	    set prompt="\!-${user_name}$prompt_name-> "
+	endif
+    endif
+    unset prompt_name suprompt_name user_name
+skipprompt:
+
+alias 1         %1
+alias 2         %2
+alias 3         %3
+alias 4         %4
+alias 5         %5
+alias 6         %6
+alias 7         %7
+alias 8         %8
+alias 9         %9
+ #alias bebeth	rlogin watdragon -l bafilliman
+# alias bq	batchqueue
+# alias cds	'cd /software/source-location/locations/permanent/\!*'
+alias cl	lc
+alias cp        cp -i
+alias dc	cd
+alias dir       'ls -alg'
+alias dirt      'ls -algrt'
+alias dirm       'ls -lg /var/mail/'
+# alias down	"ruptime | fgrep down"
+# alias doz	'compress *'
+alias e         vi
+alias f		finger
+# would be nice to provide an easy way to substitute something else for .
+alias ff	find . -type f
+alias ffs	'find . -type f | fgrep -v /.svn/ | fgrep -v /CVS/'
+alias ffg	'find . -type f | xargs grep'
+# should really use find -prune in some way
+# alias ffgs	'find . -type f | fgrep -v /.git/ | fgrep -v /.svn/ | fgrep -v /CVS/ | xargs grep'
+ #alias fj	finger jhmathon@watyew
+alias fmail	mail -f
+ #alias fone	'\grep -i -- "\!*" ~/etc/phonebook'
+# alias fone	'(cd ~/etc/phonebook; \grep -i -- "\!*" [a-z]*)'
+alias fone	'decomment ~/etc/phonebook/[a-z]* | \grep -i -- "\!*"'
+alias frmo	from
+alias form	from
+alias g         grep
+alias gi        grep -i
+alias gn        grep -n
+alias gin       grep -i -n
+alias gerp      grep
+alias grpe      grep
+# alias grep      grep -n
+alias grp       grep
+alias gunz	'gunzip *.gz'
+
+alias gitup	'git pull && git submodule sync && git submodule update --init --recursive'
+
+alias h         history
+alias hsot	host
+alias j         jobs -l
+alias ju        'jobs -l; users'
+alias la	loadaverage
+alias lpr	lpr -h
+alias lv	lc
+alias lx	lc
+ #alias lwlw	lwpr -p \"LaserWriter II NT:LaserWriter@dcs-io-at\"
+alias mlocate	locate -d /var/tmp/mlocate.db
+alias ml	locate -d /var/tmp/mlocate.db
+alias mlf	'xt -e mailloop `locate -d /var/tmp/mlocate.db \!*`'
+alias mmlf	'xt -e mailloop -m `locate -d /var/tmp/mlocate.db \!*`'
+alias jlocate	locate -d /var/tmp/jlocate.db
+# alias plocate	'locate \!* | egrep "^(/usr/ports/|/var/db/pkg)"'
+alias plocate	'locate \!* | egrep "^(/fsys[123]|)(/usr/ports/|/var/db/pkg)"'
+ #alias msgb	'msg bafilliman@watdragon \!*'
+#define alias msgs	'msg smkindersley \!*'
+#define alias msgi	'msg idallen \!*'
+#define alias msgjc	'vmexec watdcs msg clsepf51 gregoire'
+# this also avoids the "mc" midnight commander command on linux
+alias mc        mv -i
+alias mv        mv -i
+alias P         more
+alias p         more
+# alias pds	'pushd /software/source-location/locations/permanent/\!*'
+alias podp	popd
+alias rhwo	rwho
+alias rm        rm -i
+alias rsc	rcs
+alias rscdiff	rcsdiff
+alias rcsidff	rcsdiff
+alias rscidff	rcsdiff
+alias rsciff	rcsdiff
+alias rcsiff	rcsdiff
+alias rd	rcsdiff
+alias s		suspend
+alias snmpwhat	'snmptranslate -Td `snmptranslate -Ts | egrep -i \!:1\$`'
+alias sp	ps
+# alias suw	'echo Use ssuw you silly person'
+alias tclean	'rm *.aux *.log *.dvi *.blg *.bbl *.lof *.lot *.toc'
+alias u		users
+alias unz	'uncompress *.Z'
+alias up        ruptime
+alias wohis	whois
+alias whons	whois -h whois.networksolutions.com
+# alias whoca	whois -h whois.cdnnet.ca
+alias whoca	whois -h whois.cira.ca
+alias x         exit
+
+#define xterm aliases
+alias xs	'eval `resize`'
+#define alias xds	Xdlwindow =80x10+190+710
+#define alias xdl	Xdwindow =80x52+190+10
+# alias xd	'xdvi -s 4 -geometry +0+0 \!*'
+alias xd	'xdvi -s 10 -geometry +0+0 \!*'
+
+# this means that "mlf" for example won't run mutt with the wrong
+# COLUMNS and LINES
+# alias myxterm   env COLUMNS= LINES= xterm
+# freebsd vi gets upset with set but empty COLUMNS and LINES
+alias myxterm   env -u COLUMNS -u LINES xterm
+
+ # alias xbig	'(xterm -fn rogue-n =78x39+0+0 \!* &)'
+ # alias xtl	'(xterm -name \!* -title \!* -e ssh -e none -l jsellens \!* &)'
+ # alias xtlu	'(xterm -name \!* -title \!* -e ssh -e none -l jsellens \!* &)'
+ # alias xtp	'(xterm =80x24+900+240 #-0-299 \!* &)'
+ # alias xtr	'(xterm -title \!* -name \!* -e rlogin \!* -t &)'
+ # alias xtrp	'(xterm =80x24+900+210 #-0-263 -n \!* -e rlogin \!* -t &)'
+ # alias xtrr	'xauthdist -k \!:1; xkrsh \!* xterm -ls +ut -n \!:1'
+ # alias xtrrk	'xauthdist -k \!:1; xkrsh \!* xterm -ls +ut -n \!:1'
+ # alias xtrrr	'xauthdist \!:1; xrsh \!* xterm -ls +ut -n \!:1'
+ # alias xts	'ssh -e none -f -l jmsellen \!* xterm -ls +ut -title \!* -name `echo \!* | sed -e "s/\..*//"`'
+ # alias xtsu	'ssh -e none -f -l jsellens \!* xterm -ls +ut -title \!* -name `echo \!* | sed -e "s/\..*//"`'
+ # for some reason, need to gets periods out of the name, or -ls +ut doesn't
+ # work (to watdragon anyway).
+alias xt	'(myxterm \!* &)'
+alias xt	'(myxterm -name xterm_`xlsclients | grep xterm | wc -l` \!* &)'
+alias xts	'(myxterm -name \!* -title "\!*" -e ssh -e none \!* &)'
+ # for use as root
+alias xtsu	'(myxterm -name "\!*" -title "\!*" -e su -m &)'
+alias xt80	'(myxterm -name \!* -title "\!*" -e ssh -p 80 -e none \!* &)'
+alias xt443	'(myxterm -name \!* -title "\!*" -e ssh -p 443 -e none \!* &)'
+alias xtr	'(myxterm -name root@\!* -title root@\!* -e ssh -l root -e none \!* &)'
+# could add a .magna.intranet on the end here?
+# or is that solved in the tor4 /etc/resolv.conf?
+# alias xtm	'(myxterm -name "xterm_msi" -title "msi: \!*" -e ssh -t -e none tor4 ssh -t -e none \!* &)'
+# alias xtu	'(xterm -name "xterm_uunet" -title "uunet: \!*" -e ssh -t -e none rad1.tor3.uunet.ca ssh -t -e none \!* &)'
+# alias xtc	'(xterm -name "xterm_cwh" -title "cwh: \!*" -e ssh -t -e none office.developersnetwork.com ssh -t -e none \!* &)'
+
+ # alias xml	'(nice xload =115x40+900+110 </dev/null >&/dev/null &)'
+alias disp	'setenv DISPLAY "\!*":0'
+
+# alias jonews	'(xterm -title "Jo News - use the rn command to read news" -name "Jo News" -e rlogin watdragon -l jmstest -t &)'
+
+# special purpose aliases
+alias	iqcdone	env DONELOG=$HOME/syonex/clients/uwaterloo/iqc/worklog.txt done
+
+# machines connections - perhaps I should have a rd script or something?
+# alias	myob	'( rdesktop -u administrator -g1152x864 -a 8 myob & )'
+alias	myob	'( rdesktop -u administrator -g1280x960 -a 8 myob & )'
+alias	rdp	rdesktop -g1280x960
+
+ # OS specific fixes
+if ( $?OS ) then
+    switch ( "$OS" )
+	case "AIX":
+	case "HP-UX":
+	case "IRIX":
+	case "IRIX64":
+	case "SOLARIS":
+	    alias dir "ls -al"
+	    alias dirt "ls -alrt"
+	    foreach i ( df du )
+		if ( -f /usr/ucb/$i ) then
+		    alias $i /usr/ucb/$i
+		endif
+	    end
+	    unset i
+	    breaksw
+	case "FreeBSD":
+	    # freebsd-ish
+	    alias su	su -m
+	    # what craziness was this? silly me ...
+	    # limit maxproc 128
+	    limit maxproc 1024
+	    # more is less
+	    setenv	MORE		"--quiet -X"
+	    # mutt on freebsd avoid the system mailcap file because it
+	    # likes to cause shownonascii to open an xterm for plain iso-8859-1
+	    setenv	MAILCAP		$HOME/.mailcap
+	    # music music music
+	    setenv	CDPLAY		wcd0
+	    setenv	CDPLAYER	/dev/wcd0c
+	    setenv	DISC		wcd0
+	    setenv	XCDINFODIR	~/xcdplayer
+	    # cdcontrol whines about MUSIC_CD and asks for CDROM
+	    setenv	CDROM		/dev/acd0c
+	    if ( ! -f $CDROM ) then
+		setenv	CDROM		/dev/acd0
+	    endif
+	    # MUSIC_CD is for workman
+	    setenv	MUSIC_CD	$CDROM
+	    # This makes xmcd work nicely through a firewall
+	    # that doesn't let CDDB native through,
+	    setenv XMCD_CDDBPATH \
+		'/tmp;http://us.cddb.com/~cddb/cddb.cgi'
+	    # FTPing through a firewall with FreeBSD
+	    # for building ports when passive ftp is required
+	    setenv	FETCH_BEFORE_ARGS	-p
+	    # 2008/10/05 setenv	FTP_PASSIVE_MODE	yesplease
+	    # the perl Net::FTP and LWP modules like FTP_PASSIVE
+	    # 2008/10/05 setenv	FTP_PASSIVE		yesplease
+	    # do my du and df the right way
+	    setenv	BLOCKSIZE	K
+	    switch ( "$OSREV" )
+		case "3.2-RELEASE":
+		    limit openfiles 128
+		    breaksw
+		case "4.1-STABLE":
+		case "4.1.1-RELEASE":
+		case "4.1.1-STABLE":
+		case "4.2-STABLE":
+		case "4.3-BETA":
+		case "4.3-RC":
+		case "4.3-RELEASE":
+		case "4.3-STABLE":
+		case "4.4-PRERELEASE":
+		case "4.4-RC":
+		case "4.4-STABLE":
+		case "4.5-PRERELEASE":
+		case "4.5-RELEASE":
+		case "4.5-STABLE":
+		case "5.0-CURRENT":
+		case "5.*":
+		    # not that descriptors is freebsd 4.x not 3.x ...
+		    # limit descriptors 256
+		    unlimit descriptors
+		    limit maxproc 256
+		    breaksw
+	    endsw
+	    breaksw
+	case "Linux":
+	    if ( $?tcsh && $?LANG ) then
+		# demo.monbox.com RedHat 7.3 sets $LANG to en_US.iso885915
+		# which means "echo *" and "ls" are case-insensitive order
+		if ( "$LANG" =~ en_US* ) unsetenv LANG
+	    endif
+	    # more on linux is primitive, less is better
+	    # otherwise man page reading is no fun - no easy matches
+	    if ( -f /usr/bin/less ) setenv PAGER /usr/bin/less
+	    alias dir "ls -al"
+	    alias dirt "ls -alrt"
+	    alias dirm       'ls -l /var/mail/'
+	    alias jot	"echo instead of jot, try seq in linux land - alias"
+	    switch ( "$OSKVER" )
+		case *Ubuntu*:
+		    # assume this is freshbooks land
+		    alias tlog  'tail \!* /var/log/mail.log'
+		    setenv MAILCMD mutt
+		    setenv SYMAIL mutt
+		    breaksw
+	    endsw
+	    switch ( "$OSREV" )
+		case "2.2.16C32_III":
+		case "2.2.16C33_III":
+		    # Cobalt Raq3
+		    alias dirm       'ls -lg /home/spool/mail/'
+		    breaksw
+	    endsw
+	    breaksw
+    endsw
+endif
+if ( $?PAGER ) then
+    alias p $PAGER
+    alias P $PAGER
+    if ( ! $?REALPAGER ) setenv REALPAGER $PAGER
+endif
+
+# host specific
+if ( -f $HOME/.cshrc.local ) then
+    source $HOME/.cshrc.local
+endif
+
+# and some window or process specifics
+if ( $?READER_WINDOW ) then
+    # the jwindows script on j2 sets this ...
+    # and the mywindows script too
+    cd $HOME/mail/NEW
+#    if ( $?PAGER ) then
+#	setenv REALPAGER $PAGER
+#    endif
+    setenv PAGER $HOME/bin/smore
+    unsetenv READER_WINDOW
+endif

@@ -1,0 +1,16 @@
+if [ "$SSH_TTY" ]
+then
+   source $HOME/.bashrc_real
+fi
+
+if [ "$TERM" = "xterm" ]
+then
+   source $HOME/.bashrc_real
+fi
+
+#if [ "$TERM" != "dumb" ]
+#then
+#   source $HOME/.bashrc_real
+#fi
+
+

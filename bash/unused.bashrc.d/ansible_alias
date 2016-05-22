@@ -1,0 +1,8 @@
+# Ansible Env. Setup
+export ANSIBLE_INVENTORY='/home/spatton/repo/git/github/penton/ops/Penton-Ansible/inventory2'
+export ANS_INV="$ANSIBLE_INVENTORY"
+# source ~/repo/git/github/ansible/hacking/env-setup
+
+# Alias's for Ansible
+alias ansl='ansible --list-hosts'
+alias ap='ansible-playbook'

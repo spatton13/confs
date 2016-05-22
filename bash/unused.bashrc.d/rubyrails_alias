@@ -1,0 +1,8 @@
+# Firstly add rbenv to paths properly
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+# useful aliases for Capistrano (cap)
+alias rrh='rbenv rehash'
+alias bcap='bundle exec cap'
