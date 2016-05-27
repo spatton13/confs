@@ -1,0 +1,4 @@
+alias lxc-start="lxc-start -n"
+alias lxc-info="lxc-info -n"
+alias lxc-stop="lxc-stop -n"
+
